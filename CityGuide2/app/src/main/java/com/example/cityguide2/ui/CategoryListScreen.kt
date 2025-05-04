@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.cityguide2.R
 
 @Composable
 fun CategoryListScreen(
@@ -13,7 +15,7 @@ fun CategoryListScreen(
     onCategoryClick: (String) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-        Text("Сочи", style = MaterialTheme.typography.headlineMedium)
+        Text(stringResource(R.string.city_name), style = MaterialTheme.typography.headlineMedium)
         Spacer(Modifier.height(16.dp))
         categories.forEach { category ->
             Card(

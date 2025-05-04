@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.cityguide2.navigation.NavigationRoutes
 import com.example.cityguide2.ui.CategoryListScreen
 import com.example.cityguide2.ui.RecommendationListScreen
 import com.example.cityguide2.ui.RecommendationDetailScreen
@@ -19,29 +20,29 @@ fun CityNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "categories",
+        startDestination = NavigationRoutes.CATEGORIES.name,
         modifier = modifier
     ) {
-        composable("categories") {
+        composable(NavigationRoutes.CATEGORIES.name) {
             CategoryListScreen(
                 categories = cityViewModel.categories,
                 onCategoryClick = { category ->
                     cityViewModel.selectCategory(category)
-                    navController.navigate("recommendations")
+                    navController.navigate(NavigationRoutes.RECOMMENDATIONS.name)
                 }
             )
         }
-        composable("recommendations") {
+        composable(NavigationRoutes.RECOMMENDATIONS.name) {
             RecommendationListScreen(
                 recommendations = cityViewModel.selectedRecommendations,
                 onRecommendationClick = { recommendation ->
                     cityViewModel.selectRecommendation(recommendation)
-                    navController.navigate("detail")
+                    navController.navigate(NavigationRoutes.DETAIL.name)
                 },
                 onBack = { navController.popBackStack() }
             )
         }
-        composable("detail") {
+        composable(NavigationRoutes.DETAIL.name) {
             RecommendationDetailScreen(
                 recommendation = cityViewModel.selectedRecommendation,
                 onBack = { navController.popBackStack() }
