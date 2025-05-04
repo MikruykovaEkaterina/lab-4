@@ -1,0 +1,35 @@
+package com.example.cityguide2.ui
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import com.example.cityguide2.R
+
+@Composable
+fun CategoryListScreen(
+    categories: List<String>,
+    onCategoryClick: (String) -> Unit
+) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Text(stringResource(R.string.city_name), style = MaterialTheme.typography.headlineMedium)
+        Spacer(Modifier.height(16.dp))
+        categories.forEach { category ->
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+                    .clickable { onCategoryClick(category) }
+            ) {
+                Text(
+                    text = category,
+                    modifier = Modifier.padding(16.dp),
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+        }
+    }
+} 
